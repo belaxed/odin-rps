@@ -14,50 +14,87 @@ function getComputerChoice() {
     }
 }
 
+let result = "";
+
 function playRockPaperScissors(playerSelection, computerSelection) {
     computerSelection = getComputerChoice();
     playerSelection = prompt("Please choose Rock, Paper, or Scissors");
     
     playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase();
 
-    console.log(playerSelection);
-    
     if (playerSelection == "Rock") {
         if (computerSelection == "Rock") {
-            console.log("It's a tie! Rock ties Rock");
+            result = "Tie";
+            return "It's a tie! Rock ties Rock";
         }
         else if (computerSelection == "Paper") {
-            console.log("You Lose! Paper beats Rock");
+            result = "Loss";
+            return "You Lose! Paper beats Rock";
         }
         else if (computerSelection = "Scissors") {
-            console.log("You Win! Rock beats Scissors");
+            result = "Win";
+            return "You Win! Rock beats Scissors";
         }
     }
     else if (playerSelection == "Paper") {
         if (computerSelection == "Rock") {
-            console.log("You Win! Paper beats Rock");
+            result = "Win";
+            return "You Win! Paper beats Rock";
         }
         else if (computerSelection == "Paper") {
-            console.log("It's a tie! Paper ties Paper");
+            result = "Tie";
+            return "It's a tie! Paper ties Paper";
         }
         else if (computerSelection = "Scissors") {
-            console.log("You Lose! Scissors beats Paper");
+            result = "Loss";
+            return "You Lose! Scissors beats Paper";
         }
     }
     else if (playerSelection == "Scissors") {
         if (computerSelection == "Rock") {
-            console.log("You Lose! Rock beats Scissors");
+            result = "Loss";
+            return "You Lose! Rock beats Scissors";
         }
         else if (computerSelection == "Paper") {
-            console.log("You Win! Scissors beats Paper");
+            result = "Win";
+            return "You Win! Scissors beats Paper";
         }
         else if (computerSelection = "Scissors") {
-            console.log("It's a tie! Scissors ties Scissors");
+            result = "Tie";
+            return "It's a tie! Scissors ties Scissors";
         }
     }
     else {
-        console.log("Error: Invalid move, please choose Rock, Paper, or Scissors.");
+        result = "Error";
+        return "Error: Invalid move, please choose Rock, Paper, or Scissors.";
     }
 }
 
-playRockPaperScissors();
+function game() {
+    playerPointCounter = 0;
+    computerPointCounter = 0;
+
+    while (playerPointCounter < 5 && computerPointCounter < 5) {
+        
+        console.log(playRockPaperScissors());
+        console.log(result);
+        if (result == "Win") {
+            playerPointCounter = playerPointCounter + 1;
+        }
+        else if (result == "Loss") {
+            computerPointCounter = computerPointCounter + 1;
+        }
+        
+        if (playerPointCounter == 5) {
+            console.log("You Win the Game!");
+        }
+        else if (computerPointCounter == 5) {
+            console.log("You Lose the Game...");
+        }
+        else {
+            console.log("Score: You: " + playerPointCounter + " Computer: " + computerPointCounter);
+        }
+    }
+}
+
+game();
