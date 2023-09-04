@@ -67,9 +67,36 @@ function playRockPaperScissors() {
     }
 }
 
+function game() {
+    let playerPointCounter;
+    let computerPointCounter;
+
+    while (playerPointCounter < 5 && computerPointCounter < 5) {
+        
+        resultsDisplay.textContent = playRockPaperScissors();
+
+        if (result == "Win") {
+            playerPointCounter = playerPointCounter + 1;
+        }
+        else if (result == "Loss") {
+            computerPointCounter = computerPointCounter + 1;
+        }
+        
+        if (playerPointCounter == 5) {
+            finalAnnouncement.textContent = "You Win the Game!";
+        }
+        else if (computerPointCounter == 5) {
+            finalAnnouncement.textContent = "You Lose the Game...";
+        }
+        
+        runningScoreDisplay.textContent = "Score: You: " + playerPointCounter + " Computer: " + computerPointCounter;
+        
+    }
+}
+
 function getButtonClicked(e) {
     playerSelection = e.target.textContent;
-    resultsDisplay.textContent = playRockPaperScissors();
+    game();
 }
 
 const buttons = document.querySelectorAll("button");
@@ -79,4 +106,7 @@ buttons.forEach((button) => {
     );
 
 const resultsDisplay = document.querySelector("#resultsDisplay");
+
+const runningScoreDisplay = document.querySelector("#runningScoreDisplay");
+const finalAnnouncement = document.querySelector("#finalAnnouncement");
 
