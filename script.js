@@ -16,11 +16,8 @@ function getComputerChoice() {
 
 let result = "";
 
-function playRockPaperScissors(playerSelection, computerSelection) {
+function playRockPaperScissors() {
     computerSelection = getComputerChoice();
-    playerSelection = prompt("Please choose Rock, Paper, or Scissors");
-    
-    playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase();
 
     if (playerSelection == "Rock") {
         if (computerSelection == "Rock") {
@@ -70,31 +67,16 @@ function playRockPaperScissors(playerSelection, computerSelection) {
     }
 }
 
-function game() {
-    playerPointCounter = 0;
-    computerPointCounter = 0;
-
-    while (playerPointCounter < 5 && computerPointCounter < 5) {
-        
-        console.log(playRockPaperScissors());
-        console.log(result);
-        if (result == "Win") {
-            playerPointCounter = playerPointCounter + 1;
-        }
-        else if (result == "Loss") {
-            computerPointCounter = computerPointCounter + 1;
-        }
-        
-        if (playerPointCounter == 5) {
-            console.log("You Win the Game!");
-        }
-        else if (computerPointCounter == 5) {
-            console.log("You Lose the Game...");
-        }
-        else {
-            console.log("Score: You: " + playerPointCounter + " Computer: " + computerPointCounter);
-        }
-    }
+function getButtonClicked(e) {
+    playerSelection = e.target.textContent;
+    resultsDisplay.textContent = playRockPaperScissors();
 }
 
-game();
+const buttons = document.querySelectorAll("button");
+buttons.forEach((button) => {
+    button.addEventListener("click", getButtonClicked)
+    }
+    );
+
+const resultsDisplay = document.querySelector("#resultsDisplay");
+
